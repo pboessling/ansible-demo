@@ -8,6 +8,8 @@ Consists of:
 - 1 control-machine (Ubuntu Trusty Tahr)
 - 3 managed-nodes (CentOS 7)
 
+Some of the demo playbooks are based on [https://github.com/geerlingguy/ansible-for-devops].
+
 ## Prerequisites
 
 - Vagrant 2.0.1+

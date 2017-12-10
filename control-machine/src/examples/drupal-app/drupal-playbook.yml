@@ -3,7 +3,7 @@
   become: yes
 
   vars_files:
-    - drupal-app-vars.yml
+    - drupal-vars.yml
 
   pre_tasks:
     - name: Update apt cache if needed

@@ -38,7 +38,7 @@ ansible -v -i /opt/ansible/inventories/hosts -m <module> -a <arguments>
 
 ### Run Ansible Playbook
 ```
-ansible-playbook -v -i /opt/ansible/inventories/hosts /opt/ansible/playbooks/<playbook>.yml
+ansible-playbook -v -i /opt/ansible/inventories/hosts /opt/ansible/examples/<example>/<example>-playbook.yml
 ```
 
 ### Shutdown Vagrant VMs

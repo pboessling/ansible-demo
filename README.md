@@ -33,12 +33,12 @@ vagrant ssh
 
 ### Run Ansible AdHoc Command
 ```
-ansible -i /opt/ansible/inventories/hosts -m <module> -a <arguments>
+ansible -v -i /opt/ansible/inventories/hosts -m <module> -a <arguments>
 ```
 
 ### Run Ansible Playbook
 ```
-ansible-playbook -i /opt/ansible/inventories/hosts /opt/ansible/playbooks/<playbook>.yml
+ansible-playbook -v -i /opt/ansible/inventories/hosts /opt/ansible/playbooks/<playbook>.yml
 ```
 
 ### Shutdown Vagrant VMs

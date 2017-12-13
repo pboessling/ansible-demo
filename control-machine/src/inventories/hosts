@@ -1,11 +1,18 @@
 # Application servers
-[app]
+[app1]
 192.168.60.4
+
+[app2]
 192.168.60.5
 
 # Database server
 [db]
 192.168.60.6
+
+# Group 'app' with application servers
+[app:children]
+app1
+app2
 
 # Group 'multi' with all servers
 [multi:children]

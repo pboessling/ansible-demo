@@ -1,0 +1,10 @@
+---
+- hosts: app1
+
+  vars_files:
+    - vars/secret.yml
+
+  tasks:
+    - name: Echo variable from ansible vault
+      debug:
+        msg: "Secret: {{ secret }}"

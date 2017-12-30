@@ -1,0 +1,3 @@
+---
+- name: Ensure firewalld is stopped (since this is for testing)
+  service: name=firewalld state=stopped

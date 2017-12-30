@@ -1,0 +1,11 @@
+---
+- name: Install yum repo "{{ yum_repo_name }}"
+  yum:
+    name: "{{ yum_repo_name }}"
+    state: present
+
+- name: Install GPG Key "{{ rpm_key }}"
+  rpm_key:
+    key: "{{ rpm_key }}"
+    state: present
+  when: rpm_key is defined

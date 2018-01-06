@@ -1,0 +1,6 @@
+---
+- hosts: local
+
+  tasks:
+    - name: Install Ansible roles
+      command: ansible-galaxy install -r /vagrant/requirements.yml -p /etc/ansible/roles/ --force

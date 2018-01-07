@@ -5,13 +5,13 @@ import directors;
 {% for host in groups['lamp-www'] %}
 backend www{{ loop.index }} {
   .host = "{{ host }}";
-  .port = "80"
+  .port = "80";
 }
 {% endfor %}
 
 sub vcl_init {
   new vdir = directors.random();
-{% for host in groups['lamp-www'} %}
+{% for host in groups['lamp-www'] %}
   vdir.add_backend(www{{ loop.index }}, 1);
 {% endfor %}
 }

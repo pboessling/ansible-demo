@@ -1,4 +1,4 @@
-# ansible-demo
+# ansible-examples
 
 ## Description
 

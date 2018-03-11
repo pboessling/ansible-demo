@@ -1,0 +1,47 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "geerlingguy/ubuntu1604"
+  config.ssh.insert_key = false
+
+  config.vm.provider :virtualbox do |v|
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    v.customize ["modifyvm", :id, "--memory", 1024]
+    v.customize ["modifyvm", :id, "--cpus", 2]
+    v.customize ["modifyvm", :id, "--ioapic", "on"]
+  end
+
+  # ELK server
+  config.vm.define "logs" do |logs|
+    logs.vm.hostname = "logs"
+    logs.vm.network :private_network, ip: "192.168.9.90"
+
+    # Install vagrant insecure private key
+    config.vm.provision "file", source: "~/.vagrant.d/insecure_private_key", destination: "/home/vagrant/.ssh/id_rsa"
+    config.vm.provision "shell", inline: <<-SHELL
+      chmod 600 /home/vagrant/.ssh/id_rsa
+    SHELL
+
+    # Install roles
+    logs.vm.provision "ansible_local" do |ansible|
+      ansible.playbook = "install-ansible-roles.yml"
+      ansible.inventory_path = "inventories/hosts.ini"
+      ansible.verbose = true
+      ansible.limit = "all"
+    end
+
+    # Run playbook
+    logs.vm.provision "ansible_local" do |ansible|
+      ansible.playbook = "elk-playbook.yml"
+      ansible.inventory_path = "inventories/hosts.ini"
+      ansible.verbose = true
+      ansible.limit = "all"
+      ansible.extra_vars = {
+          ansible_ssh_user: "vagrant",
+          ansible_ssh_private_key_file: "/home/vagrant/.ssh/id_rsa"
+      }
+    end
+  end
+
+end
